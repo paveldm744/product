@@ -16,6 +16,7 @@ public class ProductManagerTest {
     Smartphone product4 = new Smartphone(4, "smart1", 1000, "Xiaomi");
     Smartphone product5 = new Smartphone(5, "smart2", 1100, "Asus");
     Smartphone product6 = new Smartphone(6, "smart3", 1200, "Poco");
+    Book product7 = new Book(7, "book2", 200, "Mayakovskiy");
 
 
     @Test
@@ -35,7 +36,7 @@ public class ProductManagerTest {
 
     @Test
 
-    public void shouldSearchBy() {
+    public void shouldSearchOne() {
         manager.add(product1);
         manager.add(product2);
         manager.add(product3);
@@ -48,4 +49,37 @@ public class ProductManagerTest {
         Assertions.assertArrayEquals(expected,actual);
 
     }
+
+    @Test
+
+    public void shouldSearchTwo() {
+        manager.add(product1);
+        manager.add(product2);
+        manager.add(product3);
+        manager.add(product4);
+        manager.add(product5);
+        manager.add(product6);
+        manager.add(product7);
+        Product[] expected = {product2, product7};
+        Product[] actual = manager.searchBy("book2");
+
+        Assertions.assertArrayEquals(expected,actual);
+    }
+
+    @Test
+
+    public void shouldSearchNothing() {
+        manager.add(product1);
+        manager.add(product2);
+        manager.add(product3);
+        manager.add(product4);
+        manager.add(product5);
+        manager.add(product6);
+        manager.add(product7);
+        Product[] expected = {};
+        Product[] actual = manager.searchBy("book10");
+
+        Assertions.assertArrayEquals(expected,actual);
+    }
+
 }
